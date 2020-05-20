@@ -13,7 +13,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView txt_email;
     Button viewLct;
 
-    Button btn1, btn2, btn3;
+    Button btn1, btn2, btn3, btn_logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,12 +23,10 @@ public class HomeActivity extends AppCompatActivity {
         btn1 = (Button)findViewById(R.id.btn_1);
         btn2 = (Button)findViewById(R.id.btn_2);
         btn3 = (Button)findViewById(R.id.btn_3);
-
-        Intent intent = getIntent();
-
-        txt_email.setText(intent.getStringExtra("email"));
+        btn_logout = (Button)findViewById(R.id.btn_logout);
         viewLct = (Button)findViewById(R.id.btn_1);
 
+        Intent intent = getIntent();
         loginStatus user = (loginStatus) intent.getSerializableExtra("user");
         txt_email.setText(user.getEmail());
 
@@ -44,7 +42,16 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent profileActive = new Intent(HomeActivity.this, ProfileActivity.class);
+                profileActive.putExtra("user", user);
                 startActivity(profileActive);
+            }
+        });
+
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginActivity = new Intent(HomeActivity.this, MainActivity.class);
+                startActivity(loginActivity);
             }
         });
 

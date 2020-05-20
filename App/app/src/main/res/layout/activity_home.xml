@@ -32,8 +32,17 @@
             android:text="PARENTNAME"
             android:textSize="25dp"
             android:textColor="@android:color/background_dark"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="20dp"
+            />
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="10dp"
+            android:text="Logout"
+            android:background="@drawable/button"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,6 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@drawable/button"
                 android:height="100dp"
                 android:text="view location"
                 android:textSize="35dp"
@@ -59,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@drawable/button"
                 android:height="100dp"
                 android:text="add kids"
                 android:textSize="35dp"
@@ -68,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@drawable/button"
                 android:height="100dp"
                 android:text="My Profile"
                 android:textSize="35dp"
