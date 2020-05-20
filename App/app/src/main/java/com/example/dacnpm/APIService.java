@@ -8,6 +8,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface APIService {
     @POST("api/auth")
@@ -20,4 +21,14 @@ public interface APIService {
     Call<registerStatus> regisUser(@Field("email") String email,
                                  @Field("password") String password,
                                    @Field("is_parent") int is_parent);
+    @GET("api/users/profile/{id}")
+    Call<profileStatus> getProfile(@Path("id") int id);
+
+    @POST("api/users/update-profile/{id}")
+    @FormUrlEncoded
+    Call<profileStatus> updateProfile(@Path("id") int id,
+                                      @Field("fullname") String name,
+                                      @Field("address") String address,
+                                      @Field("birthday") String birthday,
+                                      @Field("phone") String phone);
 }

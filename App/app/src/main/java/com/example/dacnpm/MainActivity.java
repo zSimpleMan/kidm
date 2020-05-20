@@ -62,9 +62,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else {
                         Toast.makeText(MainActivity.this, loginStatus.getLogin(), Toast.LENGTH_SHORT).show();
-                        Intent home = new Intent(MainActivity.this,HomeActivity.class);
-                        home.putExtra("email", loginStatus.getEmail());
-                        startActivity(home);
+                        if(loginStatus.getIsParent()==1){
+                            Intent home = new Intent(MainActivity.this,HomeActivity.class);
+                            home.putExtra("user", loginStatus);
+                            startActivity(home);
+                        }
+                        else {
+                            Intent kid = new Intent(MainActivity.this, ManHinhKid.class);
+                            startActivity(kid);
+                        }
+
+
                     }
 
             }
