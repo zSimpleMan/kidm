@@ -24,7 +24,9 @@ router.post('/', async(req, res) => {
 
     res.json({
         login:"successful",
-        email: rows[0].email
+        email: rows[0].email,
+        id: rows[0].id,
+        is_parent: rows[0].is_parent
     });
 
 })
