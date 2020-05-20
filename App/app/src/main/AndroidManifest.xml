@@ -24,9 +24,9 @@
 
         <activity android:name=".ManHinhKid" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".HomeActivity"/>
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

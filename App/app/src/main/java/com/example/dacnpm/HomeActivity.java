@@ -20,28 +20,27 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         txt_email = (TextView)findViewById(R.id.txt_email);
-        btn1 = (Button)findViewById(R.id.btnViewLoct);
+        btn1 = (Button)findViewById(R.id.btn_1);
         btn2 = (Button)findViewById(R.id.btn_2);
         btn3 = (Button)findViewById(R.id.btn_3);
 
         Intent intent = getIntent();
 
         txt_email.setText(intent.getStringExtra("email"));
-        viewLct = (Button)findViewById(R.id.btnViewLoct);
+        viewLct = (Button)findViewById(R.id.btn_1);
 
         loginStatus user = (loginStatus) intent.getSerializableExtra("user");
         txt_email.setText(user.getEmail());
 
-        btn3.setOnClickListener(new View.OnClickListener() {
+        viewLct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ///////////////////////////
-                ///////////////////////////
+                Intent ggmapScreen = new Intent(HomeActivity.this, google_map.class);
+                startActivity((ggmapScreen));
             }
         });
 
-
-        viewLct.setOnClickListener(new View.OnClickListener() {
+        btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent profileActive = new Intent(HomeActivity.this, ProfileActivity.class);
