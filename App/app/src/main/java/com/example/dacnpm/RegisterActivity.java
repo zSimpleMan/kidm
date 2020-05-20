@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<registerStatus> call, Response<registerStatus> response) {
                 registerStatus registerStatus = response.body();
                 if(registerStatus.getMessage().equals("successful")){
-                    Toast.makeText(RegisterActivity.this, registerStatus.getId()+" "+registerStatus.getEmail()+" "+
+                    Toast.makeText(RegisterActivity.this, registerStatus.getEmail()+" "+
                             registerStatus.getMessage(), Toast.LENGTH_SHORT).show();
                     Intent home = new Intent(RegisterActivity.this,MainActivity.class);
                     startActivity(home);

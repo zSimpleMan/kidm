@@ -2,7 +2,9 @@ package com.example.dacnpm;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class loginStatus {
+import java.io.Serializable;
+
+public class loginStatus implements Serializable {
 
     @SerializedName("login")
     @Expose
@@ -10,6 +12,12 @@ public class loginStatus {
     @SerializedName("email")
     @Expose
     private String email;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("is_parent")
+    @Expose
+    private Integer isParent;
 
     public String getLogin() {
         return login;
@@ -25,5 +33,21 @@ public class loginStatus {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getIsParent() {
+        return isParent;
+    }
+
+    public void setIsParent(Integer isParent) {
+        this.isParent = isParent;
     }
 }
