@@ -1,8 +1,17 @@
 package com.example.dacnpm;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,11 +24,13 @@ import java.util.ArrayList;
 
 public class ManHinhKid extends AppCompatActivity {
 
+    final int CALL_PHONE_PERMISSION_REQUEST_CODE = 1;
 
     Button btnSOS, btnchat, btn_themtn;
     EditText edt_themtn;
     ListView listview_tnnhanh;
     ArrayList<String> arrayTnn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +61,15 @@ public class ManHinhKid extends AppCompatActivity {
         btn_themtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edt_themtn.getText().toString() !="")
+                if (edt_themtn.getText().toString().matches(""))
                 {
+                    Toast.makeText(ManHinhKid.this,"bạn chưa thêm tin nhắn",Toast.LENGTH_LONG).show();
+                }
+                else {
                     String tnn = edt_themtn.getText().toString();
                     arrayTnn.add(tnn);
                     edt_themtn.setText("");
                     adapter.notifyDataSetChanged();
-                }
-                else {
-                    Toast.makeText(ManHinhKid.this,"bạn chưa thêm tin nhắn",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -71,5 +82,40 @@ public class ManHinhKid extends AppCompatActivity {
                 return false;
             }
         });
+
+        if(checkPermission(Manifest.permission.CALL_PHONE)) {
+            return;
+        }else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CALL_PHONE},
+                    CALL_PHONE_PERMISSION_REQUEST_CODE);
+        }
+
+        btnSOS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCall();
+            }
+        });
+    }
+
+    public boolean checkPermission(String permission)
+    {
+        int check = ContextCompat.checkSelfPermission(this, permission);
+        return (check == PackageManager.PERMISSION_GRANTED);
+    }
+
+
+    public void onCall() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.CALL_PHONE},
+                    CALL_PHONE_PERMISSION_REQUEST_CODE);
+        } else {
+            startActivity(new Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:0394174233")));
+        }
     }
 }
