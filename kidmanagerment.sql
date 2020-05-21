@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 19, 2020 lúc 04:25 PM
+-- Thời gian đã tạo: Th5 21, 2020 lúc 08:44 AM
 -- Phiên bản máy phục vụ: 10.3.16-MariaDB
 -- Phiên bản PHP: 7.3.6
 
@@ -77,7 +77,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `is_parent`) VALUES
-(10, 'nhathantl@gmail.com', '$2a$08$1OcRnCZ9V2IiF0CDjA1nRO/Bm7ABWlpmmRgEyhS38UJwzjY/7/rdW', 1);
+(15, 'nhathantl@gmail.com', '$2a$08$0QVbGLg.l.Hz7WbbWMWlkOdo/IgP1NwZrdCA40o1PosjI5ZDcm9Ou', 1),
+(16, 'nhathan@gmail.com', '$2a$08$9DYk78SEuJFUsQwXwUbvZORK/p7CHHL.rA.pDfIVMyVbxKdwZKl1C', 1),
+(17, 'luunhathan@gmail.com', '$2a$08$vw9I6GALD8neRT1PWeKScu85YdlPzw2zHZ90U3GWFOx960eeiLFSi', 1),
+(18, 'kid@gmail.com', '$2a$08$dC7HIsG9t8pkro7a4UzsJ.AW13jLMSfCkwEJV32Vqe4ifGw5WWgIS', 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -115,7 +118,7 @@ ALTER TABLE `parent_requirement`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
