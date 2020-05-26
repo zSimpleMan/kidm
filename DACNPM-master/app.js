@@ -36,9 +36,8 @@ app.use('/api/users', require('./routes/user.route'));
 
 app.use('/api/auth', require('./routes/auth.route'));
 
-app.use('/add-adnmin', require('./routes/admin.route'));
 
-const PORT = 3000;
+var PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`API is running at http://localhost:${PORT}`);
 })

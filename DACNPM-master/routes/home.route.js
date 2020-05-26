@@ -6,11 +6,9 @@ const router = express.Router();
 //get all users
 router.get('/', async(req, res) => {
     const ret1 = await userModel.all();
-    const ret2 = await adminModel.all();
-    console.log(ret);
+    console.log(ret1);
     res.render('home', {
-        users: ret1,
-        admins: ret2
+        users: ret1
     });
 })
 
