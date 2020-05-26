@@ -1,0 +1,55 @@
+
+<br>
+<br>
+<div class="container">
+    <h5><b>USERS</b></h5>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">parent name</th>
+      <th scope="col">email</th>
+      <th scope="col">phone</th>
+      <th scope="col">kid name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this.users}} 
+    <tr>
+      <th scope="row">{{id}}</th>
+      <td>{{parentname}}</td>
+      <td>{{email}}</td>
+      <td>{{phone}}</td>
+      <td>{{kidname}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<br>
+
+    <h5><b>ADMINS</b></h5>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">username</th>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+      <th scope="col">phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this.admins}} 
+    <tr>
+      <th scope="row">{{id}}</th>
+      <td>{{username}}</td>
+      <td>{{name}}</td>
+      <td>{{email}}</td>
+      <td>{{phone}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+</div>
