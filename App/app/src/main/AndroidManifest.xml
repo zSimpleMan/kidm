@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".KidActivity">
-
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -31,8 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-            <activity android:name=".google_map" />
-        </activity>
+        <activity android:name=".google_map" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomeActivity"></activity>
         

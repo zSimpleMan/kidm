@@ -61,4 +61,52 @@ router.get("/profile/:id", async(req, res) => {
 
 });
 
+router.post("/kidlocation/:id", async(req, res) =>{
+    const check = await userModel.singleByID(req.params.id);
+    if (check.length < 1){
+        return res.json({ result: "failed" });
+    }
+    if(check[0].is_parent == 1){
+        return res.json({ result: "failed" });
+    }
+
+    const kidlocation = await userModel.singleLocationByID(req.params.id);
+    if (kidlocation.length < 1){
+        req.body.id = req.params.id;
+        await userModel.addLocation(req.body);
+        const rows = await userModel.singleLocationByID(req.params.id);
+        return res.json({
+            result: 'successful',
+            id: rows[0].id,
+            latitude: rows[0].latitude,
+            longitude: rows[0].longitude
+        });
+    }
+    await userModel.updateLocation(req.body, req.params.id);
+    const rows = await userModel.singleLocationByID(req.params.id);
+    return res.json({
+        result: 'successful',
+        id: rows[0].id,
+        latitude: rows[0].latitude,
+        longitude: rows[0].longitude
+    });
+
+});
+
+router.get("/get-mykid/:id", async(req, res) => {
+    const check = await userModel.singleByID(req.params.id);
+    if (check.length < 1){
+        return res.json({ result: "failed" });
+    }
+    const kid = await userModel.getKidByID(req.params.id);
+    if(kid.length<1){
+        return res.json({ result: "failed" });
+    }
+    res.json({
+        result: 'successful',
+        id_kid: kid[0].id_kid,
+        id_parent: kid[0].id_parent
+    });
+});
+
 module.exports = router;
