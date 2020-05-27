@@ -74,21 +74,13 @@ router.post("/kidlocation/:id", async(req, res) => {
     if (kidlocation.length < 1) {
         req.body.id = req.params.id;
         await userModel.addLocation(req.body);
-        const rows = await userModel.singleLocationByID(req.params.id);
         return res.json({
             result: 'successful',
-            id: rows[0].id,
-            latitude: rows[0].latitude,
-            longitude: rows[0].longitude
         });
     }
     await userModel.updateLocation(req.body, req.params.id);
-    const rows = await userModel.singleLocationByID(req.params.id);
     return res.json({
         result: 'successful',
-        id: rows[0].id,
-        latitude: rows[0].latitude,
-        longitude: rows[0].longitude
     });
 
 });
