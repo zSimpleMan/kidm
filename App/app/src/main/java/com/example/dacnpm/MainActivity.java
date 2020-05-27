@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(home);
                         }
                         else {
-                            Intent kid = new Intent(MainActivity.this, ManHinhKid.class);
+                            Intent kid = new Intent(MainActivity.this, KidActivity.class);
+                            kid.putExtra("user", loginStatus);
                             startActivity(kid);
                         }
 
