@@ -35,8 +35,8 @@ public class GPS_Service extends Service {
             @Override
             public void onLocationChanged(Location location) {
                 Intent i = new Intent("location_update");
-                i.putExtra("location", location.getLongitude() + " - " + location.getLatitude());
-                Log.d("sa", "onLocationChanged: " + location.getLatitude());
+                i.putExtra("latitude", location.getLatitude());
+                i.putExtra("longitude", location.getLongitude());
                 sendBroadcast(i);
             }
 

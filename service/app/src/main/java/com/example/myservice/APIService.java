@@ -11,8 +11,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface APIService {
-    @POST("/kidlocation/:id")
+    @POST("/api/users/kidlocation/{id}")
     @FormUrlEncoded
-    Call<>
+    Call<LocationStatus> UpdateLocation(@Path("id") int id, @Field("latitude") double latitude,
+                                        @Field("longitude") double longitude);
 
 }

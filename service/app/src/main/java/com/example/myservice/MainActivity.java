@@ -12,9 +12,14 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +35,23 @@ public class MainActivity extends AppCompatActivity {
             broadcastReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    txt_location.append("\n" + intent.getExtras().get("location"));
+                    double la = (double) intent.getExtras().get("latitude");
+                    double lo = (double) intent.getExtras().get("longitude");
+
+                    Call<LocationStatus> call = RetrofitClient.getInstance().getApi()
+                            .UpdateLocation(41, la, lo);
+                    call.enqueue(new Callback<LocationStatus>() {
+                        @Override
+                        public void onResponse(Call<LocationStatus> call, Response<LocationStatus> response) {
+                            Log.d("m", "onResponse: " + response.body().getResult());
+                        }
+
+                        @Override
+                        public void onFailure(Call<LocationStatus> call, Throwable t) {
+                            Log.d("m", "onResponse: ff" );
+                        }
+                    });
+
                 }
             };
             registerReceiver(broadcastReceiver, new IntentFilter("location_update"));
