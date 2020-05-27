@@ -11,12 +11,12 @@ module.exports = {
         entity.password = hash;
         return db.add(entity, 'users');
     },
-
+    all: () => db.load(`SELECT * FROM users`),
     singleByEmail: email => db.load(`select * from users where email = '${email}'  `),
     singleByID: id => db.load(`select * from users where id = '${id}'  `),
     singleProfileByID: id => db.load(`select *,DATE_FORMAT(birthday, "%Y-%m-%d") as birthday from user_profile where id = '${id}' `),
     updateProfile: (entity, id) => {
         return db.update(entity, id, 'user_profile');
     },
-    addProfile: entity => db.add(entity,'user_profile')
+    addProfile: entity => db.add(entity, 'user_profile')
 };

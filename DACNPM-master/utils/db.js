@@ -3,11 +3,11 @@ const { promisify } = require('util');
 
 const pool = mysql.createPool({
     connectionLimit: 100,
-    host: 'localhost',
+    host: 'us-cdbr-east-05.cleardb.net',
     port: 3306,
-    user: 'root',
-    password: '',
-    database: 'kidmanagerment'
+    user: 'b1bd0e2253fb4f',
+    password: 'a2f6d7b2',
+    database: 'heroku_096d62b2c9d603b'
 });
 
 const pool_query = promisify(pool.query).bind(pool);
