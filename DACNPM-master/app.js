@@ -4,6 +4,7 @@ const cors = require('cors');
 const hbs_sections = require('express-handlebars-sections');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
+const crypto = require('crypto');
 
 const app = express();
 

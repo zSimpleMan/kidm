@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,8 +29,8 @@ import org.json.JSONObject;
 
 public class google_map extends FragmentActivity implements OnMapReadyCallback {
 
-    float longi;
-    float atti;
+    String longitude;
+    String latitude;
 
     GoogleMap map;
 
@@ -41,8 +43,22 @@ public class google_map extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.gg_map);
         mapFragment.getMapAsync(this::onMapReady);
 
-        //update location
-        updateLocation();
+    }
+
+    public  void  loopRequest()
+    {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getCurrentLocation();
+
+                Float lo = Float.parseFloat(longitude);
+                Float la = Float.parseFloat(latitude);
+
+                handler.postDelayed(this, 3000);
+            }
+        },1000);
     }
 
     @Override
@@ -54,8 +70,8 @@ public class google_map extends FragmentActivity implements OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(VietNam, 17));
     }
 
-    public void updateLocation(){
-        String URL ="https://kidmanagement.herokuapp.com/api/users/kid-getlocation/41";
+    public void getCurrentLocation(){
+        String URL ="http://10.0.3.2:3000/api/users/kid-getlocation/41";
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -66,8 +82,14 @@ public class google_map extends FragmentActivity implements OnMapReadyCallback {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("rest response", response.toString());
-
+                        try {
+                            Log.e("Longitude: ", response.getString("longitude"));
+                            Log.e("Attitude: ", response.getString("latitude"));
+                            longitude = response.getString("longitude");
+                            latitude = response.getString("latitude");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
