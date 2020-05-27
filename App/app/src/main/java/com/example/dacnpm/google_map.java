@@ -32,7 +32,7 @@ public class google_map extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         LatLng VietNam = new LatLng(10.762622,106.660172);
-        map.animateCamera( CameraUpdateFactory.zoomTo( 17.0f ) );
+        map.animateCamera( CameraUpdateFactory.zoomTo( 15.0f ) );
         map.addMarker(new MarkerOptions().position(VietNam).title("Việt Nam"));
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(VietNam, 17));
     }
