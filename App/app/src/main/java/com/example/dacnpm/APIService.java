@@ -31,4 +31,6 @@ public interface APIService {
                                       @Field("address") String address,
                                       @Field("birthday") String birthday,
                                       @Field("phone") String phone);
+    @GET("api/users/getlocation/{id}")
+    Call<LocationStatus> getlocationkid(@Path("id") int id);
 }
