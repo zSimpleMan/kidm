@@ -8,7 +8,7 @@ router.get('/', async(req, res) => {
     const ret1 = await userModel.all();
     console.log(ret1);
     res.render('home', {
-        users: ret1
+        parents: ret1
     });
 })
 

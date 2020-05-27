@@ -4,10 +4,6 @@ const db = require('../utils/db');
 
 module.exports = {
     login: async entity => {
-        // entity = {
-        //   "username": "admin",
-        //   "password": "admin"
-        // }
 
         const rows = await userModel.singleByEmail(entity.email);
         if (rows.length === 0)

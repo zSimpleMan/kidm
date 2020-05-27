@@ -9,14 +9,16 @@
       <th scope="col">#</th>
       <th scope="col">username</th>
       <th scope="col">email</th>
+      <th scope="col">phone</th>
     </tr>
   </thead>
   <tbody>
-    {{#each this.users}} 
+    {{#each this.parents}} 
     <tr>
       <th scope="row">{{id}}</th>
       <td>{{username}}</td>
       <td>{{email}}</td>
+      <td>{{phone}}</td>
     </tr>
     {{/each}}
   </tbody>
