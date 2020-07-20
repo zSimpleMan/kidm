@@ -10,7 +10,6 @@ import android.util.Log;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.maps.CameraUpdate;
@@ -27,12 +26,17 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class google_map extends FragmentActivity implements OnMapReadyCallback {
 
     String longitude;
     String latitude;
 
     GoogleMap map;
+    LocationStatus locationStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,63 +46,49 @@ public class google_map extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager()
                 .findFragmentById(R.id.gg_map);
         mapFragment.getMapAsync(this::onMapReady);
-
+        doFirstWork();
     }
 
-    public  void  loopRequest()
-    {
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+    private void doFirstWork() {
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getCurrentLocation();
-
-                Float lo = Float.parseFloat(longitude);
-                Float la = Float.parseFloat(latitude);
-
-                handler.postDelayed(this, 3000);
+                mHandler.postDelayed(this, 3000);
             }
-        },1000);
+        }, 1000);
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        LatLng latLng = new LatLng(10,106);
         map = googleMap;
-        LatLng VietNam = new LatLng(10.762622,106.660172);
         map.animateCamera( CameraUpdateFactory.zoomTo( 15.0f ) );
-        map.addMarker(new MarkerOptions().position(VietNam).title("Việt Nam"));
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(VietNam, 17));
+        map.addMarker(new MarkerOptions().position(latLng).title("My Kid"));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
     }
 
-    public void getCurrentLocation(){
-        String URL ="http://10.0.3.2:3000/api/users/kid-getlocation/41";
+    private void getCurrentLocation(){
+        Call<LocationStatus> call = RetrofitClient.getInstance().getApi()
+                .getlocationkid(41);
+        call.enqueue(new Callback<LocationStatus>() {
+            @Override
+            public void onResponse(Call<LocationStatus> call, Response<LocationStatus> response) {
+                locationStatus = response.body();
+                Log.d("N", "onFailure: " + locationStatus.getResult() + locationStatus.getLatitude());
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+                LatLng latLng = new LatLng(locationStatus.getLatitude(), locationStatus.getLongitude());
+                map.addMarker(new MarkerOptions().position(latLng).title("My Kid"));
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST,
-                URL,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            Log.e("Longitude: ", response.getString("longitude"));
-                            Log.e("Attitude: ", response.getString("latitude"));
-                            longitude = response.getString("longitude");
-                            latitude = response.getString("latitude");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("rest response", error.toString());
-                    }
-                }
-        );
-        requestQueue.add(jsonObjectRequest);
+            }
+
+            @Override
+            public void onFailure(Call<LocationStatus> call, Throwable t) {
+                Log.d("N", "onFailure: ERROR");
+            }
+        });
     }
 }
