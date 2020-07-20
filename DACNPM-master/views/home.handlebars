@@ -2,25 +2,28 @@
 <br>
 <br>
 <div class="container">
-    <h5><b>USERS</b></h5>
+    <h4>Danh sách tài khoản người dùng</h4>
+    <br>
     <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">username</th>
-      <th scope="col">email</th>
-      <th scope="col">phone</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each this.parents}} 
-    <tr>
-      <th scope="row">{{id}}</th>
-      <td>{{username}}</td>
-      <td>{{email}}</td>
-      <td>{{phone}}</td>
-    </tr>
-    {{/each}}
-  </tbody>
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.parents}}
+            <tr>
+            <td>{{id}}</td>
+            <td>{{fullname}}</td>
+            <td>{{address}}</td>
+            <td>{{birthday}}</td>
+            <td>{{phone}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
 </table>
 </div>

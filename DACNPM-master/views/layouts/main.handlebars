@@ -8,18 +8,36 @@
 </head>
 <body>
     {{!-- header --}}
+    
      <div>
-        <h4 class="text-center"><a style="text-decoration: none;color:red" href="/"><b class="text-align center">
-                    KID MANAGEMENT - SERVER</b></a>
-        </h4>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><strong style="color: #007bff;">KID MANAGEMENT</strong></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Tìm kiếm</button>
+    </form>
+  </div>
+</nav>
     </div>
+    
+
 
     <div>
         {{{body}}}
     </div>
 
 {{!-- footer --}}
-<div class="fter bg-dark text-light align-text-bottom " style="margin-top:50px; position:absolute; bottom:0; width:100%;">
+{{!-- <div class="footer bg-dark text-light">
         <div class="container">
             <div class="row">
                 <div class="col-sm" style="margin-top:13px;color:azure;">
@@ -31,14 +49,14 @@
                 </div>
                 <div class="col-sm" style="margin-top:13px;">
                     <h6>Liên hệ</h6>
-                    <a style="text-decoration: none;color:azure;"
+                    <a style="text-decoration: none;color:azure;" target="_blank"
                         href="https://www.facebook.com/mrhauphan">https://www.facebook.com/mrhauphan</a>
-                    <a style="text-decoration: none;color:azure;"
+                    <a style="text-decoration: none;color:azure;" target="_blank"
                         href="https://www.facebook.com/nhathan.luu.5">https://www.facebook.com/nhathan.luu.5</a>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -46,3 +64,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+</style>

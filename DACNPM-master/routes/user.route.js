@@ -102,19 +102,21 @@ router.get("/get-mykid/:id", async(req, res) => {
 });
 
 
-router.post('/kid-getlocation/:id', async(req, res) => {
-    const ret = await userModel.singleLocationByID(req.params.id);
-    if (ret.length <= 0) {
-        res.json({
-            message: 'failed as get location'
-        })
+router.get("/getlocation/:id",async (req, res) => {
+    const location = await userModel.singleLocationByID(req.params.id);
+    if(location.length<1){
+        return res.json({
+            result: 'failed'
+        });
     }
-    return res.json({
+
+    res.json({
         result: 'successful',
-        id: ret[0].id,
-        latitude: ret[0].latitude,
-        longitude: ret[0].longitude
+        latitude: location[0].latitude,
+        longitude: location[0].longitude
     });
-})
+});
+
+
 
 module.exports = router;

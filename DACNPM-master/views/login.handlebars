@@ -1,0 +1,24 @@
+<div>
+    <form action="" method="POST">
+    <div class="content-form" style="width:300px;">
+        {{#if failed}}
+        <h6 style="color: red;">Sai email hoặc mật khẩu</h6>
+        {{/if}}
+        <div class="form-group">
+            <label for="tendn">Email</label>
+            <input type="text" class="form-control"  name="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="matkhau">Mật khẩu</label>
+            <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
+        </div>
+        <button style="margin-bottom:10px;width:300px;" type="submit" class="btn btn-outline-primary my-2 my-sm-0">Đăng nhập</button>
+    </div>
+    </form>
+</div>
+
+<style>
+.content-form{
+    margin: 50px auto;
+} 
+</style>

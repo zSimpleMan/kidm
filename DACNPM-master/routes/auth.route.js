@@ -1,34 +1,32 @@
 const express = require('express');
 const authModel = require('../models/auth.model');
 const userModel = require('../models/user.model');
+const usercodeModel = require('../models/user_code.model');
 
 const router = express.Router();
 
-//sign in
+//sign in by code
 router.post('/', async(req, res) => {
-
     // req.body = {
-    //     "email": "pvhau",
-    //     "password": "pvhau"
+    //     code: '2845254242'
     // }
+    const result = await usercodeModel.singleByCode(req.body.code);
+    console.log(result);
+    console.log(req.body);
 
-    const ret = await authModel.login(req.body);
-
-    if (ret === null) {
+    if (result.length === 0) {
         return res.json({
-            login: "fail"
-        });
+            success: false,
+            message: 'Sai mã đăng nhập'
+        })
     }
 
-    const rows = await userModel.singleByEmail(req.body.email);
-
     res.json({
-        login:"successful",
-        email: rows[0].email,
-        id: rows[0].id,
-        is_parent: rows[0].is_parent
-    });
-
+        success: true,
+        message: 'Đăng nhập thành công',
+        code: req.body.code
+    })
 })
+
 
 module.exports = router;

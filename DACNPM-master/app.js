@@ -24,7 +24,11 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/', require('./routes/home.route'));
+app.use('/admin/home', require('./routes/home.route'));
+
+app.use('/admin', require('./routes/loginWeb.route'));
+
+app.use('/register', require('./routes/register.route'));
 
 app.post('/', (req, res) => {
     res.json({
