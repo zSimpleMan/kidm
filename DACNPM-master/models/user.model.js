@@ -24,11 +24,9 @@ module.exports = {
         return db.update(entity, id, 'user_profile');
     },
     addProfile: entity => db.add(entity, 'user_profile'),
-    addLocation: entity => db.add(entity, 'kid_location'),
+    getKidByID: id_parent => db.load(`select * from parents where id_parent='${id_parent}'`),
 
-    updateLocation: (entity, id) => {
-        return db.update(entity, id, 'kid_location');
-    },
-    singleLocationByID: id => db.load(`select * from kid_location where id = '${id}' `),
-    getKidByID: id_parent => db.load(`select * from parents where id_parent='${id_parent}'`)
+    addLocation: entity => db.add(entity, 'location'),
+    updateLocation: (entity, code) => { return db.updateL(entity, code, 'location'); },
+    getLocation: code => db.load(`select * from location where CODE = ${code}`),
 };

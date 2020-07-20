@@ -15,5 +15,6 @@ const pool_query = promisify(pool.query).bind(pool);
 module.exports = {
     load: sql => pool_query(sql),
     add: (entity, tableName) => pool_query(`insert into ${tableName} set ?`, entity),
-    update: (entity, id, tableName) => pool_query(`update ${tableName} set ? where id = ${id}`, entity)
+    update: (entity, id, tableName) => pool_query(`update ${tableName} set ? where id = ${id}`, entity),
+    updateL: (entity, code, tableName) => pool_query(`update ${tableName} set ? where CODE = ${code}`, entity)
 };
