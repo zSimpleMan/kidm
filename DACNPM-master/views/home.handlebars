@@ -7,7 +7,7 @@
     <table class="table">
         <thead>
             <tr>
-            <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">Full Name</th>
             <th scope="col">Address</th>
             <th scope="col">Birthday</th>
@@ -25,5 +25,53 @@
             </tr>
             {{/each}}
         </tbody>
-</table>
+    </table>
+    <br>
+    <br>
+    <h4>Danh sách thông tin thanh toán của tài khoản người dùng</h4>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">UserID</th>
+            <th scope="col">Number</th>
+            <th scope="col">Validity Date</th>
+            <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.payments}}
+            <tr>
+            <td>{{id}}</td>
+            <td>{{userid}}</td>
+            <td>{{number}}</td>
+            <td>{{validity_date}}</td>
+            <td>{{name}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <h4>Danh sách mã đăng nhập của người dùng</h4>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">UserID</th>
+            <th scope="col">Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.usercode}}
+            <tr>
+            <td>{{id}}</td>
+            <td>{{userid}}</td>
+            <td>{{code}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>

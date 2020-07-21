@@ -30,7 +30,7 @@ app.use('/admin', require('./routes/loginWeb.route'));
 
 app.use('/register', require('./routes/register.route'));
 
-app.use('/dashboard', require('./routes/dashboard.route'))
+app.use('/', require('./routes/dashboard.route'))
 
 app.post('/', (req, res) => {
     res.json({
