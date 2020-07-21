@@ -3,7 +3,7 @@ package com.example.myservice;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
+import android.content.Intent;
 import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,9 +23,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn_start, btn_stop;
-    TextView txt_location;
-
+    String mycode;
     private BroadcastReceiver broadcastReceiver;
 
     @Override
@@ -39,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
                     double lo = (double) intent.getExtras().get("longitude");
 
                     Call<LocationStatus> call = RetrofitClient.getInstance().getApi()
-                            .UpdateLocation(41, la, lo);
+                            .UpdateLocation(mycode, la, lo);
                     call.enqueue(new Callback<LocationStatus>() {
                         @Override
                         public void onResponse(Call<LocationStatus> call, Response<LocationStatus> response) {
-                            Log.d("m", "onResponse: " + response.body().getResult());
+                            Log.d("m", "onResponse: " + response.body().getMessage());
                         }
 
                         @Override
@@ -71,29 +69,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn_start = (Button)findViewById(R.id.btn_start);
-        btn_stop = (Button)findViewById(R.id.btn_stop);
-        txt_location = (TextView) findViewById(R.id.txt_location);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if(bundle != null){
+            mycode = (String) bundle.get("mycode");
+        }
+        else {
+            Intent intent1 = new Intent(MainActivity.this, Login.class);
+            startActivity(intent1);
+        }
 
         if (runtime_permissions()){
             enable_button();
         }
     }
     private void enable_button() {
-        btn_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
                 Intent i = new Intent(getApplicationContext(), GPS_Service.class);
                 startService(i);
-            }
-        });
-        btn_stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), GPS_Service.class);
-                stopService(i);
-            }
-        });
+
     }
 
     private boolean runtime_permissions(){

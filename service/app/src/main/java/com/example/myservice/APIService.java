@@ -11,9 +11,12 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface APIService {
-    @POST("/api/users/kidlocation/{id}")
+    @POST("/api/users/update-location/{code}")
     @FormUrlEncoded
-    Call<LocationStatus> UpdateLocation(@Path("id") int id, @Field("latitude") double latitude,
-                                        @Field("longitude") double longitude);
+    Call<LocationStatus> UpdateLocation(@Path("code") String code, @Field("Latitute") double latitute,
+                                        @Field("Longitute") double longitute);
+    @POST("api/auth")
+    @FormUrlEncoded
+    Call<LoginStatus> Login(@Field("code") String code);
 
 }

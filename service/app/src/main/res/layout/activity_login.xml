@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KID Management"
+            android:textSize="40dp"
+            android:layout_weight="@android:integer/config_longAnimTime"
+            android:layout_marginLeft="10dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:drawableLeft="@mipmap/icon"
+            android:drawablePadding="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Follow and protect your kid"
+            android:textSize="20dp"
+            android:layout_weight="@android:integer/config_longAnimTime"
+            android:layout_marginLeft="60dp"
+            android:textColor="@android:color/black"
+            />
+        <EditText
+            android:id="@+id/edt_code"
+            android:hint="your code"
+            android:textColorHint="@android:color/black"
+            android:inputType="text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:textSize="30dp"
+            android:width="300dp"
+            android:layout_marginLeft="30dp"
+            android:textColor="@android:color/black"
+            />
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="40dp"
+            android:textSize="20dp"
+            android:text="Login"
+            android:textColor="@android:color/holo_blue_light"
+            android:background="@drawable/button_custom_login" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

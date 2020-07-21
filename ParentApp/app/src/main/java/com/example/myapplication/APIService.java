@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.database.Observable;
 
+import com.example.myapplication.JsonData.LocationStatus;
 import com.example.myapplication.JsonData.LoginStatus;
 
 import okhttp3.ResponseBody;
@@ -16,4 +17,7 @@ public interface APIService {
     @POST("api/auth")
     @FormUrlEncoded
     Call<LoginStatus> Login(@Field("code") String code);
+
+    @GET("api/users/getlocation/{code}")
+    Call<LocationStatus> GetLocation(@Path("code") String code);
 }

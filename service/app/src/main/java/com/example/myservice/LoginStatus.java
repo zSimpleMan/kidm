@@ -3,14 +3,18 @@ package com.example.myservice;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LocationStatus {
+import java.io.Serializable;
 
+public class LoginStatus implements Serializable {
     @SerializedName("success")
     @Expose
     private Boolean success;
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("code")
+    @Expose
+    private String code;
 
     public Boolean getSuccess() {
         return success;
@@ -26,5 +30,13 @@ public class LocationStatus {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

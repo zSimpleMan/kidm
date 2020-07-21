@@ -9,36 +9,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <Button
-            android:id="@+id/btn_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:width="150dp"
-            android:text="start"
-            android:textSize="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            />
-        <Button
-            android:id="@+id/btn_stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:width="150dp"
-            android:text="Stop"
-            android:textSize="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-
-            />
         <TextView
-            android:id="@+id/txt_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="location"
-            android:textSize="30dp"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="30dp"/>
-
+            android:textSize="25dp"
+            android:text="App is running..."
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@android:color/holo_blue_light"/>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
