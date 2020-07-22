@@ -10,13 +10,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="App is running..."
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/holo_blue_light"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25dp"
-            android:text="App is running..."
+            android:text="Your Latlong: "
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="100dp"
             android:textColor="@android:color/holo_blue_light"/>
+        <TextView
+            android:id="@+id/tv_latlong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="0 - 0"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="140dp"
+            android:textColor="@android:color/black"/>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

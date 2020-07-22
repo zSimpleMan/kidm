@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     String mycode;
     private BroadcastReceiver broadcastReceiver;
+    TextView tv_latlong;
 
     @Override
     protected void onResume() {
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<LocationStatus> call, Response<LocationStatus> response) {
                             Log.d("m", "onResponse: " + response.body().getMessage());
+                            tv_latlong.setText("" + la +" - "+lo);
                         }
 
                         @Override
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tv_latlong = (TextView) findViewById(R.id.tv_latlong);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
